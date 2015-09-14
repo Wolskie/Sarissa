@@ -1,0 +1,4 @@
+---
+port: '9292'
+bind_address: 127.0.0.1
+show_exceptions: 'true'
