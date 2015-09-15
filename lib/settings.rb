@@ -1,4 +1,3 @@
-
 class Settings
     class << self
 
@@ -7,7 +6,6 @@ class Settings
         attr_accessor :config
 
         def load(file)
-            $stdout.puts("Amber: (load): Loading configuration")
 
             begin
                 @config = YAML::load(File.read(file))
@@ -19,16 +17,10 @@ class Settings
                 @config = {}
             end
 
-            write_defaults()
-            save(file)
-
-            $stdout.puts("Amber: (load): Running using configuration:")
-
             return true
         end
 
         def save(file)
-            $stdout.puts("Amber: (save): Writing configuration.")
             File.open(file, 'w') do |f|
                 f.write(@config.to_yaml)
             end
@@ -45,15 +37,6 @@ class Settings
         def []=(k)
             @config[k] = v
         end
-
-        private
-        def write_defaults()
-            @config['port']            = '9292'
-            @config['ginger']  = 'D:\Home\Ginger'
-            @config['bind_address']    = '127.0.0.1'
-            @config['show_exceptions'] = 'true'
-        end
-
     end
 end
 
